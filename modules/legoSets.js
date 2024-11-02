@@ -41,6 +41,21 @@ class LegoData {
         })
     }
 
+    addSet(newSet) {
+        return new Promise((resolve, reject) => {
+            // Check if set_num already exists
+            const exists = this.sets.some(set => set.set_num === newSet.set_num);
+            if (exists) {
+                // Reject the promise if the set already exists
+                reject("Set already exists");
+            } else {
+                // Add the new set to the array and resolve the promise
+                this.sets.push(newSet);
+                resolve();
+            }
+        });
+    }
+
     getAllSets() {
         return new Promise((resolve, reject) => {
             resolve(this.sets)
